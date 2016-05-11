@@ -1,1 +1,1 @@
-#jquery-dropdown
+#jQuery Dropdown
