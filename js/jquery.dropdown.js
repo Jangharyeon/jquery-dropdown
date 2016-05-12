@@ -1,4 +1,7 @@
 (function(root, $) {
+
+	'use strict';
+
 	function Dropdown($elem, opts) {
 		this.element = $elem;
 
@@ -96,7 +99,7 @@
 				var $this = $(this),
 					instanceKey = 'dropdown';
 
-				instance = new Dropdown($this);
+				var instance = new Dropdown($this);
 				$this.data(instanceKey, instance);
 			});
 		}
