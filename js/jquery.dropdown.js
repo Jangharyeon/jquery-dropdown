@@ -71,11 +71,7 @@
 		toggle: function() {
 			var isOpen = this.status.isOpen === true;
 
-			if (!isOpen) {
-				this.activate();
-			} else {
-				this.deactivate();
-			}
+			!isOpen ? this.activate() : this.deactivate();
 		},
 
 		noneTargetClose: function(e) {
@@ -83,9 +79,7 @@
 				hasTargetNone = this.element.has(e.target).length === 0,
 				isNoneTarget = hasActivate && hasTargetNone;
 
-			if (isNoneTarget) {
-				this.deactivate();
-			}
+			isNoneTarget && this.deactivate();
 		}
 	};
 
