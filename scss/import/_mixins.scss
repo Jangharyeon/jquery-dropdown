@@ -13,8 +13,8 @@
 }
 
 // Check border radius
-@mixin checkBorderRadius() {
+@mixin checkBorderRadius($radius) {
 	@if $button-borderRadius != 0 {
-		border-radius: $button-borderRadius;
+		border-radius: $radius;
 	}
 }

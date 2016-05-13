@@ -19,7 +19,7 @@
 	height: $button-height;
 	padding: 0 $button-pdRight 0 $button-pdLeft;
 	border: 1px solid $button-borderColor;
-	@include checkBorderRadius();
+	@include checkBorderRadius($button-borderRadius);
 	font-size: $button-fontSize;
 	line-height: $button-lineHeight;
 	color: $button-color;
@@ -54,7 +54,7 @@
 	}
 	padding: $layer-pdVertical 0;
 	border: 1px solid $layer-borderColor;
-	@include checkBorderRadius();
+	@include checkBorderRadius($button-borderRadius);
 	background-color: $layer-bgColor;
 	line-height:1.5;
 	list-style-type: none;
