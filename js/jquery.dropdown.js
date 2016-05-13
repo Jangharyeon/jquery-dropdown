@@ -16,22 +16,35 @@
 
 		this.$elements = {
 			buttons: null,
-			options: null,
+			panel: null,
 			optionsLast: null
+		};
+
+		this.options = {
+			animateSpeed: 150,
+			fade: false,
+			slide: false
 		};
 
 		this.activateClass = 'active';
 
-		this.initialize();
+		this.initialize(opts);
 	}
 
 	Dropdown.prototype = {
-		initialize: function() {
+		initialize: function(opts) {
+			// Set options
+			this.setOptions(opts);
+
 			// Set elements
 			this.setElements();
 
 			// Bind event
 			this.bindEvents();
+		},
+
+		setOptions: function(opts) {
+			this.options = $.extend({}, this.options, opts || {});
 		},
 
 		setElements: function() {
@@ -42,30 +55,16 @@
 				$elems = self.$elements;
 
 			$elems.buttons = $elem.findDataElements(prefixes.button);
-			$elems.options = $elem.findDataElements(prefixes.option);
-			$elems.optionsLast = $elems.options.find('a:last');
+			$elems.panel = $elem.findDataElements(prefixes.option);
+			$elems.optionsLast = $elems.panel.find('a:last');
 		},
 
 		bindEvents: function() {
 			// Toggle event
 			this.$elements.buttons.on('click', this.toggle.bind(this));
-			this.$elements.optionsLast.on('focusout', this.focusoutClose.bind(this));
+			this.$elements.optionsLast.on('focusout', this.deactivate.bind(this));
 
 			$(document).on('click', this.noneTargetClose.bind(this));
-		},
-
-		activate: function() {
-			this.element.addClass(this.activateClass);
-			this.status.isOpen = true;
-		},
-
-		deactivate: function() {
-			this.element.removeClass(this.activateClass);
-			this.status.isOpen = false;
-		},
-
-		focusoutClose: function(e) {
-			this.deactivate();
 		},
 
 		toggle: function() {
@@ -80,6 +79,52 @@
 				isNoneTarget = hasActivate && hasTargetNone;
 
 			isNoneTarget && this.deactivate();
+		},
+
+		activate: function() {
+			this.element.addClass(this.activateClass);
+			this.options.fade === true && this.fadeActivate();
+			this.options.slide === true && this.slideActivate();
+
+			this.status.isOpen = true;
+		},
+
+		deactivate: function() {
+			this.element.removeClass(this.activateClass);
+			this.options.fade === true && this.fadeDeactivate();
+			this.options.slide === true && this.slideDeactivate();
+
+			this.status.isOpen = false;
+		},
+
+		fadeActivate: function() {
+			this.$elements.panel.fadeIn(this.options.animateSpeed);
+		},
+
+		fadeDeactivate: function() {
+			this.$elements.panel.fadeOut(this.options.animateSpeed);
+		},
+
+		slideActivate: function() {
+			var $panel = this.$elements.panel,
+				panelHeight = $panel.outerHeight();
+
+			$panel.css({
+				display: 'block',
+				height: 0
+			}).animate({
+				height: panelHeight
+			}, this.options.animateSpeed);
+		},
+
+		slideDeactivate: function() {
+			var $panel = this.$elements.panel;
+
+			$panel.animate({
+				height: 0
+			}, this.options.animateSpeed, function() {
+				$panel.removeAttr('style');
+			});
 		}
 	};
 
@@ -88,12 +133,12 @@
 			return $(this).find('[data-dropdown=' + key + ']');
 		},
 
-		dropdown: function() {
+		dropdown: function(opts) {
 			return this.each(function() {
 				var $this = $(this),
 					instanceKey = 'dropdown';
 
-				var instance = new Dropdown($this);
+				var instance = new Dropdown($this, opts);
 				$this.data(instanceKey, instance);
 			});
 		}
