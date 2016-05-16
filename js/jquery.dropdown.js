@@ -16,8 +16,7 @@
 
 		this.$elements = {
 			buttons: null,
-			panel: null,
-			optionsLast: null
+			panel: null
 		};
 
 		this.options = {
@@ -56,13 +55,11 @@
 
 			$elems.buttons = $elem.findDataElements(prefixes.button);
 			$elems.panel = $elem.findDataElements(prefixes.panel);
-			$elems.panelLastLink = $elems.panel.find('a:last');
 		},
 
 		bindEvents: function() {
 			// Toggle event
 			this.$elements.buttons.on('click', this.toggle.bind(this));
-			this.$elements.panelLastLink.on('focusout', this.deactivate.bind(this));
 
 			$(document).on('click', this.noneTargetClose.bind(this));
 		},
@@ -98,11 +95,24 @@
 		},
 
 		fadeActivate: function() {
-			this.$elements.panel.fadeIn(this.options.animateSpeed);
+			var $panel = this.$elements.panel;
+
+			$panel.css({
+				display: 'block',
+				opacity: 0
+			}).animate({
+				opacity: 1
+			}, this.options.animateSpeed);
 		},
 
 		fadeDeactivate: function() {
-			this.$elements.panel.fadeOut(this.options.animateSpeed);
+			var $panel = this.$elements.panel;
+
+			$panel.animate({
+				opacity: 0
+			}, this.options.animateSpeed, function() {
+				$panel.removeAttr('style');
+			});
 		},
 
 		slideActivate: function() {

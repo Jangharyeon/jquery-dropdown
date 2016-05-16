@@ -9,8 +9,12 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
-		$('.dropdown').dropdown({
+		$('#default').dropdown();
+		$('#fade').dropdown({
 			fade: true
+		});
+		$('#slide').dropdown({
+			slide: true
 		});
 	});
 </script>
@@ -19,8 +23,9 @@
 
 <h1>jQuery Dropdown</h1>
 
+<h2>Default</h2>
 <div>
-	<div class="ui dropdown">
+	<div id="default" class="ui dropdown">
 		<a href="javascript:;" class="button" data-dropdown="button">dropdown</a>
 		<ul class="layer" data-dropdown="panel">
 			<li>
@@ -34,7 +39,11 @@
 			</li>
 		</ul>
 	</div>
-	<div class="ui dropdown">
+</div>
+
+<h2>Fade option</h2>
+<div>
+	<div id="fade" class="ui dropdown">
 		<a href="javascript:;" class="button" data-dropdown="button">dropdown</a>
 		<ul class="layer" data-dropdown="panel">
 			<li>
@@ -48,7 +57,11 @@
 			</li>
 		</ul>
 	</div>
-	<div class="ui dropdown">
+</div>
+
+<h2>Slide option</h2>
+<div>
+	<div id="slide" class="ui dropdown">
 		<a href="javascript:;" class="button" data-dropdown="button">dropdown</a>
 		<ul class="layer" data-dropdown="panel">
 			<li>

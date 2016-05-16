@@ -73,5 +73,8 @@
   border-top-color: transparent;
   border-bottom-color: #333;
 }
+.ui.dropdown.active .layer {
+  display: block;
+}
 
 /*# sourceMappingURL=dropdown.css.map */
