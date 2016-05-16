@@ -11,7 +11,7 @@
 
 		this.prefixes = {
 			button: 'button',
-			option: 'layer'
+			panel: 'panel'
 		};
 
 		this.$elements = {
@@ -55,14 +55,14 @@
 				$elems = self.$elements;
 
 			$elems.buttons = $elem.findDataElements(prefixes.button);
-			$elems.panel = $elem.findDataElements(prefixes.option);
-			$elems.optionsLast = $elems.panel.find('a:last');
+			$elems.panel = $elem.findDataElements(prefixes.panel);
+			$elems.panelLastLink = $elems.panel.find('a:last');
 		},
 
 		bindEvents: function() {
 			// Toggle event
 			this.$elements.buttons.on('click', this.toggle.bind(this));
-			this.$elements.optionsLast.on('focusout', this.deactivate.bind(this));
+			this.$elements.panelLastLink.on('focusout', this.deactivate.bind(this));
 
 			$(document).on('click', this.noneTargetClose.bind(this));
 		},
