@@ -21,8 +21,7 @@
 
 		this.options = {
 			animateSpeed: 150,
-			fade: false,
-			slide: false
+			animate: false
 		};
 
 		this.activateClass = 'active';
@@ -80,16 +79,16 @@
 
 		activate: function() {
 			this.element.addClass(this.activateClass);
-			this.options.fade === true && this.fadeActivate();
-			this.options.slide === true && this.slideActivate();
+			this.options.animate === 'fade' && this.fadeActivate();
+			this.options.animate === 'slide' && this.slideActivate();
 
 			this.status.isOpen = true;
 		},
 
 		deactivate: function() {
 			this.element.removeClass(this.activateClass);
-			this.options.fade === true && this.fadeDeactivate();
-			this.options.slide === true && this.slideDeactivate();
+			this.options.animate === 'fade' && this.fadeDeactivate();
+			this.options.animate === 'slide' && this.slideDeactivate();
 
 			this.status.isOpen = false;
 		},

@@ -9,12 +9,12 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
-		$('#default').dropdown();
-		$('#fade').dropdown({
-			fade: true
+		$('[data-id=default]').dropdown();
+		$('[data-id=fade]').dropdown({
+			animate: 'fade'
 		});
-		$('#slide').dropdown({
-			slide: true
+		$('[data-id=slide]').dropdown({
+			animate: 'slide'
 		});
 	});
 </script>
@@ -23,9 +23,54 @@
 
 <h1>jQuery Dropdown</h1>
 
+<h2>Selector</h2>
+<ul>
+	<li>Button: data-dropdown="button"</li>
+	<li>Panel: data-dropdown="panel"</li>
+</ul>
+
+<h2>Options</h2>
+<ul>
+	<li>
+		animateSpeed
+		<ul>
+			<li>Type: Number</li>
+			<li>Default: 150</li>
+		</ul>
+	</li>
+	<li>
+		fade
+		<ul>
+			<li>Type: Boolean</li>
+			<li>Default: false</li>
+		</ul>
+	</li>
+	<li>
+		slide
+		<ul>
+			<li>Type: Boolean</li>
+			<li>Default: false</li>
+		</ul>
+	</li>
+</ul>
+
 <h2>Default</h2>
 <div>
-	<div id="default" class="ui dropdown">
+	<div class="ui dropdown" data-id="default">
+		<a href="javascript:;" class="button" data-dropdown="button">dropdown</a>
+		<ul class="layer" data-dropdown="panel">
+			<li>
+				<a href="javascript:;">Menu 01</a>
+			</li>
+			<li>
+				<a href="javascript:;">Menu 02</a>
+			</li>
+			<li>
+				<a href="javascript:;">Menu 03</a>
+			</li>
+		</ul>
+	</div>
+	<div class="ui dropdown" data-id="default">
 		<a href="javascript:;" class="button" data-dropdown="button">dropdown</a>
 		<ul class="layer" data-dropdown="panel">
 			<li>
@@ -41,9 +86,23 @@
 	</div>
 </div>
 
-<h2>Fade option</h2>
+<h2>Animate fade option</h2>
 <div>
-	<div id="fade" class="ui dropdown">
+	<div class="ui dropdown" data-id="fade">
+		<a href="javascript:;" class="button" data-dropdown="button">dropdown</a>
+		<ul class="layer" data-dropdown="panel">
+			<li>
+				<a href="javascript:;">Menu 01</a>
+			</li>
+			<li>
+				<a href="javascript:;">Menu 02</a>
+			</li>
+			<li>
+				<a href="javascript:;">Menu 03</a>
+			</li>
+		</ul>
+	</div>
+	<div class="ui dropdown" data-id="fade">
 		<a href="javascript:;" class="button" data-dropdown="button">dropdown</a>
 		<ul class="layer" data-dropdown="panel">
 			<li>
@@ -59,9 +118,23 @@
 	</div>
 </div>
 
-<h2>Slide option</h2>
+<h2>Animate slide option</h2>
 <div>
-	<div id="slide" class="ui dropdown">
+	<div class="ui dropdown" data-id="slide">
+		<a href="javascript:;" class="button" data-dropdown="button">dropdown</a>
+		<ul class="layer" data-dropdown="panel">
+			<li>
+				<a href="javascript:;">Menu 01</a>
+			</li>
+			<li>
+				<a href="javascript:;">Menu 02</a>
+			</li>
+			<li>
+				<a href="javascript:;">Menu 03</a>
+			</li>
+		</ul>
+	</div>
+	<div class="ui dropdown" data-id="slide">
 		<a href="javascript:;" class="button" data-dropdown="button">dropdown</a>
 		<ul class="layer" data-dropdown="panel">
 			<li>
