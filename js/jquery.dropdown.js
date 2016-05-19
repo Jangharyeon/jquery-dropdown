@@ -6,7 +6,8 @@
 		this.element = $elem;
 
 		this.status = {
-			isOpen: false
+			isOpen: false,
+			inProgress: false
 		};
 
 		this.prefixes = {
@@ -64,17 +65,23 @@
 		},
 
 		toggle: function() {
-			var isOpen = this.status.isOpen === true;
+			var inProgress = this.status.inProgress === true,
+				isOpen = this.status.isOpen === true;
 
-			!isOpen ? this.activate() : this.deactivate();
+			if (!inProgress) {
+				!isOpen ? this.activate() : this.deactivate();
+			}
 		},
 
 		noneTargetClose: function(e) {
-			var hasActivate = this.element.hasClass(this.activateClass),
+			var inProgress = this.status.inProgress === true,
+				hasActivate = this.element.hasClass(this.activateClass),
 				hasTargetNone = this.element.has(e.target).length === 0,
 				isNoneTarget = hasActivate && hasTargetNone;
 
-			isNoneTarget && this.deactivate();
+			if (!inProgress && isNoneTarget) {
+				this.deactivate();
+			}
 		},
 
 		activate: function() {
@@ -94,45 +101,63 @@
 		},
 
 		fadeActivate: function() {
-			var $panel = this.$elements.panel;
+			var self = this,
+				$panel = self.$elements.panel;
+
+			self.status.inProgress = true;
 
 			$panel.css({
 				display: 'block',
 				opacity: 0
 			}).animate({
 				opacity: 1
-			}, this.options.animateSpeed);
+			}, self.options.animateSpeed, function() {
+				self.status.inProgress = false;
+			});
 		},
 
 		fadeDeactivate: function() {
-			var $panel = this.$elements.panel;
+			var self = this,
+				$panel = self.$elements.panel;
+
+			self.status.inProgress = true;
 
 			$panel.animate({
 				opacity: 0
-			}, this.options.animateSpeed, function() {
+			}, self.options.animateSpeed, function() {
 				$panel.removeAttr('style');
+				self.status.inProgress = false;
 			});
 		},
 
 		slideActivate: function() {
-			var $panel = this.$elements.panel,
+			var self = this,
+				$panel = self.$elements.panel,
 				panelHeight = $panel.outerHeight();
+
+			self.status.inProgress = true;
 
 			$panel.css({
 				display: 'block',
 				height: 0
 			}).animate({
 				height: panelHeight
-			}, this.options.animateSpeed);
+			}, self.options.animateSpeed, function() {
+				self.status.inProgress = false;
+			});
 		},
 
 		slideDeactivate: function() {
-			var $panel = this.$elements.panel;
+			var self = this,
+				$panel = self.$elements.panel;
+
+			self.status.inProgress = true;
 
 			$panel.animate({
 				height: 0
-			}, this.options.animateSpeed, function() {
+			}, self.options.animateSpeed, function() {
 				$panel.removeAttr('style');
+				self.status.inProgress = false;
 			});
 		}
 	};
