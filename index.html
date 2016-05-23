@@ -7,6 +7,7 @@
 <link rel="stylesheet" type="text/css" href="http://jangharyeon.github.io/resources/css/doc.css">
 <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
 <script src="http://jangharyeon.github.io/resources/js/lib/shCore.js"></script>
+<script src="http://jangharyeon.github.io/resources/js/lib/shBrushXml.js"></script>
 <script src="http://jangharyeon.github.io/resources/js/lib/shBrushJScript.js"></script>
 <script src="js/jquery.dropdown.js"></script>
 
@@ -15,7 +16,13 @@
 
 <h1>jQuery Dropdown</h1>
 
-<hr>
+<h2>Start</h2>
+<h3>Include the files</h3>
+<pre class="brush:xml">
+	&lt;link rel="stylesheet" type="text/css" href="dropdown.css"&gt;
+	&lt;script src="jquery.min.js"&gt;&lt;/script&gt;
+	&lt;script src="jquery.dropdown.js"&gt;&lt;/script&gt;
+</pre>
 
 <h2>Selector</h2>
 <ul>
@@ -84,6 +91,22 @@
 		</ul>
 	</div>
 </div>
+<pre class="brush:xml">
+	<div class="ui dropdown" data-id="default">
+		<a href="javascript:;" class="button" data-dropdown="button">dropdown</a>
+		<ul class="layer" data-dropdown="panel">
+			<li>
+				<a href="javascript:;">Menu 01</a>
+			</li>
+			<li>
+				<a href="javascript:;">Menu 02</a>
+			</li>
+			<li>
+				<a href="javascript:;">Menu 03</a>
+			</li>
+		</ul>
+	</div>
+</pre>
 <pre class="brush:js">
 	$('[data-id=default]').dropdown();
 </pre>
@@ -119,6 +142,22 @@
 		</ul>
 	</div>
 </div>
+<pre class="brush:xml">
+	<div class="ui dropdown" data-id="fade">
+		<a href="javascript:;" class="button" data-dropdown="button">dropdown</a>
+		<ul class="layer" data-dropdown="panel">
+			<li>
+				<a href="javascript:;">Menu 01</a>
+			</li>
+			<li>
+				<a href="javascript:;">Menu 02</a>
+			</li>
+			<li>
+				<a href="javascript:;">Menu 03</a>
+			</li>
+		</ul>
+	</div>
+</pre>
 <pre class="brush:js">
 	$('[data-id=fade]').dropdown({
 		animate: 'fade'
@@ -156,6 +195,22 @@
 		</ul>
 	</div>
 </div>
+<pre class="brush:xml">
+	<div class="ui dropdown" data-id="slide">
+		<a href="javascript:;" class="button" data-dropdown="button">dropdown</a>
+		<ul class="layer" data-dropdown="panel">
+			<li>
+				<a href="javascript:;">Menu 01</a>
+			</li>
+			<li>
+				<a href="javascript:;">Menu 02</a>
+			</li>
+			<li>
+				<a href="javascript:;">Menu 03</a>
+			</li>
+		</ul>
+	</div>
+</pre>
 <pre class="brush:js">
 	$('[data-id=slide]').dropdown({
 		animate: 'slide'
@@ -193,6 +248,22 @@
 		</ul>
 	</div>
 </div>
+<pre class="brush:xml">
+	<div class="ui dropdown" data-id="speed">
+		<a href="javascript:;" class="button" data-dropdown="button">dropdown</a>
+		<ul class="layer" data-dropdown="panel">
+			<li>
+				<a href="javascript:;">Menu 01</a>
+			</li>
+			<li>
+				<a href="javascript:;">Menu 02</a>
+			</li>
+			<li>
+				<a href="javascript:;">Menu 03</a>
+			</li>
+		</ul>
+	</div>
+</pre>
 <pre class="brush:js">
 	$('[data-id=speed]').dropdown({
 		animateSpeed: 250,
